@@ -1,0 +1,16 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "test file",
+  "main": "index.js",
+  "scripts": {
+    "test": "1 + 1"
+  },
+  "author": "ded",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/create-config": "^1.0.0",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0"
+  }
+}
