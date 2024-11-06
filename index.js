@@ -145,5 +145,19 @@ const makeItFunny = (text, num) => {
 }
 
 const encrypt = (text) => {
-    
+    let result = '';
+    for(let i = 0; i < text.length; i++) {
+        if (text.length % 2 === 0) {
+          if(i % 2 === 0) {
+              result += text[i+1];
+          } else {
+              result += text[i-1];
+          }
+        } else {
+            
+        } 
+    }
+    return(result);
 }
+console.log(encrypt('move'));
+console.log(encrypt('go!'));
