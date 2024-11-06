@@ -154,7 +154,13 @@ const encrypt = (text) => {
               result += text[i-1];
           }
         } else {
-            
+            if(i % 2 === 0) {
+                result += text[i+1];
+            } else if (i === (text.length - 1)){
+                result += text[i];
+            } else {
+                result += text[i-1];
+            }
         } 
     }
     return(result);
