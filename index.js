@@ -129,18 +129,21 @@ const countChars = (text, char) => {
 
 
 const makeItFunny = (text, num) => {
-    let result = '';
-    let i = 0;
-    result = `${result}${text[0]}`
-    i++
+    let result = ' ';
+    let i = 1;
     while(i < text.length) {
         if (i % num === 0) {
-            result = `${result}${text[i+1].toUpperCase()}`;
+            result = `${result}${text[i-1].toUpperCase()}`;
         } else {
-            result = `${result}${text[i+1]}`
+            result = `${result}${text[i-1]}`;
         }
         i++;
     }
+    result = `${result}${text[text.length-1]}`;
+    result = result.slice(1);
     return(result);
 }
-console.log(makeItFunny('I never look back', 3));
+
+const encrypt = (text) => {
+    
+}
