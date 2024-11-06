@@ -128,3 +128,19 @@ const countChars = (text, char) => {
 }
 
 
+const makeItFunny = (text, num) => {
+    let result = '';
+    let i = 0;
+    result = `${result}${text[0]}`
+    i++
+    while(i < text.length) {
+        if (i % num === 0) {
+            result = `${result}${text[i+1].toUpperCase()}`;
+        } else {
+            result = `${result}${text[i+1]}`
+        }
+        i++;
+    }
+    return(result);
+}
+console.log(makeItFunny('I never look back', 3));
