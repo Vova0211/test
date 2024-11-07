@@ -154,10 +154,10 @@ const encrypt = (text) => {
               result += text[i-1];
           }
         } else {
-            if(i % 2 === 0) {
-                result += text[i+1];
-            } else if (i === (text.length - 1)){
+            if (i === (text.length - 1)) {
                 result += text[i];
+            } else if(i % 2 === 0){
+                result += text[i+1];
             } else {
                 result += text[i-1];
             }
@@ -165,5 +165,7 @@ const encrypt = (text) => {
     }
     return(result);
 }
+
+export {encrypt};
 console.log(encrypt('move'));
-console.log(encrypt('go!'));
+console.log(encrypt('goal!'));
