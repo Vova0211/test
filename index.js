@@ -166,6 +166,119 @@ const encrypt = (text) => {
     return(result);
 }
 
-export {encrypt};
-console.log(encrypt('move'));
-console.log(encrypt('goal!'));
+const invertCase = (text) => {
+    let result = '';
+    for(let i = 0; i < text.length; i++) {
+        if(text[i] === text[i].toUpperCase()) {
+            result += text[i].toLowerCase();
+        } else {
+            result += text[i].toUpperCase();
+        }
+    }
+    return(result);
+}
+
+const fizzBuzz = (begin, end) => {
+    for (let i = begin; i <= end; i++) {
+        if (i % 5 === 0 && i % 3 === 0) {
+            console.log('FizzBuzz');
+        } else if (i % 5 === 0) {
+            console.log('Buzz');
+        } else if (i % 3 === 0) {
+            console.log('Fizz');
+        } else {
+            console.log(`${i}`);
+        }
+    }
+}
+
+function findDivisors(n) {
+    var divisors = [];
+    var result = 0;
+    for (var i = 1; i < n; i++) {
+        if (n % i === 0) {
+            divisors.push(i);
+        }
+    }
+    for (let i = 0; i < divisors.length; i++) {
+        result += divisors[i];
+    }
+    return result;
+}
+const isPerfect = (num) => {
+    let result = Boolean;
+    if (num > 0 && num === findDivisors(num)) {
+        result = true;
+    } else {
+        result = false;
+    }
+    return result;
+}
+
+const isHappyTicket = (number) => {
+    let result1 = 0;
+    let result2 = 0;
+    for (let i = 0; i < (number.length / 2); i++) {
+        result1 += parseInt(number[i]);
+    }
+    for (let i = (number.length / 2); i < number.length; i++) {
+        result2 += parseInt(number[i]);
+    }
+    let result = Boolean;
+    if (result1 === result2) {
+        result = true;
+    } else {
+        result = false;
+    }
+    return result;
+}
+
+const sumOfSquareDigits = (num) => {
+    const numAsStr = String(num);
+    let sum = 0;
+    for (let i = 0; i < numAsStr.length; i += 1) {
+      const digit = Number(numAsStr[i]);
+      sum += digit * digit;
+    }
+    return sum;
+}
+const isHappyNumber = (num) => {
+    let i = 0;
+    while(i < 10) {
+        if (sumOfSquareDigits(num) === 1) {
+            return true;
+        }
+        num = sumOfSquareDigits(num);
+        i++;
+    }
+    return false;
+}
+
+const reverseInt = (num) => {
+    let isNegative = false;
+    if (num < 0) {
+        isNegative = true;
+        num *= (-1);
+    }
+    num = num.toString();
+    let result = reverse(num);
+    result = parseInt(result);
+    if (isNegative === true) {
+        result *= (-1);
+    }
+    return result;
+}
+
+const fib = (num) => {
+    let num1 = 0;
+    let num2 = 1; 
+    let fibanachi = [0, 1];
+    for (let i = 0; i < (num / 2); i++) {
+        num1 += num2;
+        fibanachi.push(num1);
+        num2 += num1;
+        fibanachi.push(num2);
+    }
+    return fibanachi[num];
+}
+
