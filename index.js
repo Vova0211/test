@@ -409,7 +409,31 @@ const buildDefinitionList = (arr) => {
     return result;
 }
 
-const makeCensored = (arr, arFind) => {
-    let result;
-    return result;
+const capitalizeWords = (text) => {
+    const separator = ' ';
+    const words = text.split(separator);
+    const arrWords = [];
+    for (const word of words) {
+        arrWords.push(word);
+    }
+    return arrWords;
+    return arrWords.join(separator); // Соединяем обработанные слова обратно в предложение
+};
+
+const makeCensored = (text, arrFind) => {
+    const separator = ' ';
+    const words = text.split(separator);
+    const arrWords = [];
+    for (const word of words) {
+        arrWords.push(word);
+    }
+    for (let i = 0; i < arrWords.length; i++) {
+        for (let j = 0; j < arrFind.length; j++) {
+            if (arrWords[i] === arrFind[j]) {
+                arrWords[i] = '$#%!';
+            }
+        }
+    }
+    return arrWords.join(separator);
 }
+
