@@ -1,4 +1,4 @@
-const reverse = (s) => s.split('').reverse().join('');
+const reverseText = (s) => s.split('').reverse().join('');
 
 const printQuestion = (word = '1') => {
     console.log(`${word}?`)
@@ -66,7 +66,7 @@ const convertText = (text) => {
     if (text[0] === text[0].toUpperCase()) {
         result = text;
     } else {
-        result = reverse(text);
+        result = reverseText(text);
     }
     return(result);
 }
@@ -192,6 +192,8 @@ const fizzBuzz = (begin, end) => {
     }
 }
 
+export {fizzBuzz};
+
 function findDivisors(n) {
     var divisors = [];
     var result = 0;
@@ -261,14 +263,14 @@ const reverseInt = (num) => {
         num *= (-1);
     }
     num = num.toString();
-    let result = reverse(num);
+    let result = reverseText(num);
     result = parseInt(result);
     if (isNegative === true) {
         result *= (-1);
     }
     return result;
 }
-
+export {reverseInt};
 const fib = (num) => {
     let num1 = 0;
     let num2 = 1; 
@@ -282,3 +284,44 @@ const fib = (num) => {
     return fibanachi[num];
 }
 
+const getWeekends = (setting = 'long') => {
+    if (setting === 'long') {
+        let day = ['saturday', 'sunday']
+        return day;
+    } else if (setting === 'short') {
+        let day = ['sat', 'sun'];
+        return day;
+    }
+}
+
+const swap = (arr = []) => {
+    if (arr.length < 2) {
+        return arr;
+    }
+    let ctn = arr[arr.length - 1];
+    arr[arr.length - 1] = arr[0];
+    arr[0] = ctn;
+    return arr;
+}
+
+const get = (arr, num, znach = null) => {
+    if (num > 6 || num < 0) {
+        arr[num] = znach;
+    }
+    return arr[num];
+}
+
+const addPrefix = (arr, prefix) => {
+    prefix += (' ');
+    let result = arr;
+    for (let i = 0; i < arr.length; i++) {
+        result[i] = prefix + arr[i];
+    }
+    return result;
+}
+
+const reverse = (arr) => {
+    return arr.reverse();
+}
+const names = ['john', 'smith', 'karl'];
+console.log(reverse(names));
