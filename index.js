@@ -1,1 +1,1 @@
-console.log('lf'); 
+console.log('Who\'s to blame?'); 
