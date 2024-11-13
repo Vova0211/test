@@ -192,8 +192,6 @@ const fizzBuzz = (begin, end) => {
     }
 }
 
-export {fizzBuzz};
-
 function findDivisors(n) {
     var divisors = [];
     var result = 0;
@@ -270,7 +268,7 @@ const reverseInt = (num) => {
     }
     return result;
 }
-export {reverseInt};
+
 const fib = (num) => {
     let num1 = 0;
     let num2 = 1; 
@@ -323,5 +321,95 @@ const addPrefix = (arr, prefix) => {
 const reverse = (arr) => {
     return arr.reverse();
 }
-const names = ['john', 'smith', 'karl'];
-console.log(reverse(names));
+
+const calculateSum = (arr = []) => {
+    if (!arr || !arr.length) {
+        return 0;
+    }
+    let result = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] % 3 === 0) {
+            result += arr[i];
+        }
+    }
+    return result;
+}
+
+const calculateAverage = (arr) => {
+    if (!arr || !arr.length) {
+        return null;
+    }
+    let sum = 0;
+    for (let i = 0; i <= arr.length; i++) {
+        if (i === arr.length) {
+            return (sum / arr.length);
+        }
+        sum += arr[i];
+    }
+}
+
+const getSameParity = (arr) => {
+    const parity = Math.abs(arr[0]) % 2;
+    let result = [];
+    for (let i = 0; i < arr.length; i++) {
+        if ((Math.abs(arr[i]) % 2) === parity) {
+            result.push(arr[i]);
+        }
+    }
+    return result;
+}
+
+const getTotalAmount = (arr, curr) => {
+    let value = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i][0] !== curr[0]) {
+            continue;
+        } else {
+        let j = parseInt(arr[i].slice(4));
+        value += j;
+        }
+    }
+    return value;
+}
+const getSuperSeriesWinner = (arr) => {
+    let canada = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i][0] > arr[i][1]) {
+            canada += 1;
+        } else if (arr[i][0] < arr[i][1]) {
+            canada -= 1;
+        } else {
+            continue;
+        }
+    }
+    if (canada > 0) {
+        return 'canada';
+    } else if (canada < 0) {
+        return 'ussr';
+    } else {
+        return null;
+    }
+}
+
+const buildDefinitionList = (arr) => {
+    if (!arr || !arr.length) {
+        return "";
+    }
+    let result = '<dl>';
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length; j++) {
+            if (j === 0) {
+                result += `<dt>${arr[i][j]}</dt>`;
+            } else { 
+                result += `<dd>${arr[i][j]}</dd>`;
+            }
+        }
+    }
+    result += '</dl>'
+    return result;
+}
+
+const makeCensored = (arr, arFind) => {
+    let result;
+    return result;
+}
