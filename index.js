@@ -409,7 +409,26 @@ const buildDefinitionList = (arr) => {
     return result;
 }
 
+const capitalizes = (text) => { (text.length === 0) ? text : `${text[0].toUpperCase()}${text.slice(1)}`; }
+  
+  const capitalizeWords = (sentence) => {
+    const separator = ' ';
+    const words = sentence.split(separator);
+    // Формируем массив обработанных слов
+    const capitalizedWords = [];
+    for (const word of words) {
+      capitalizedWords.push(capitalizes(word));
+    }
+  
+    // Соединяем обработанные слова обратно в предложение
+    return capitalizedWords.join(separator);
+  };
+  
+const sentence = 'When you play the game of thrones, you win or you die';
+console.log(capitalizes(sentence));
 const makeCensored = (arr, arFind) => {
     let result;
+    
+    
     return result;
 }
