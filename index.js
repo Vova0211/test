@@ -1,3 +1,4 @@
+import _ from './lodash.js';
 const reverseText = (s) => s.split('').reverse().join('');
 
 const printQuestion = (word = '1') => {
@@ -409,26 +410,71 @@ const buildDefinitionList = (arr) => {
     return result;
 }
 
-const capitalizes = (text) => { (text.length === 0) ? text : `${text[0].toUpperCase()}${text.slice(1)}`; }
-  
-  const capitalizeWords = (sentence) => {
+const capitalizeWords = (text) => {
     const separator = ' ';
-    const words = sentence.split(separator);
-    // Формируем массив обработанных слов
-    const capitalizedWords = [];
+    const words = text.split(separator);
+    const arrWords = [];
     for (const word of words) {
-      capitalizedWords.push(capitalizes(word));
+        arrWords.push(word);
     }
-  
-    // Соединяем обработанные слова обратно в предложение
-    return capitalizedWords.join(separator);
-  };
-  
-const sentence = 'When you play the game of thrones, you win or you die';
-console.log(capitalizes(sentence));
-const makeCensored = (arr, arFind) => {
-    let result;
-    
-    
-    return result;
+    return arrWords;
+    return arrWords.join(separator); // Соединяем обработанные слова обратно в предложение
+};
+
+const makeCensored = (text, arrFind) => {
+    const separator = ' ';
+    const words = text.split(separator);
+    const arrWords = [];
+    for (const word of words) {
+        arrWords.push(word);
+    }
+    for (let i = 0; i < arrWords.length; i++) {
+        for (let j = 0; j < arrFind.length; j++) {
+            if (arrWords[i] === arrFind[j]) {
+                arrWords[i] = '$#%!';
+            }
+        }
+    }
+    return arrWords.join(separator);
 }
+
+const getSameCount = (arrFirst, arrSecond) => {
+    let result = [];
+    for (let i = 0; i < arrFirst.length; i++) {
+        let bol = false;
+        for (let j = 0; j < arrSecond.length; j++) {
+            if (arrFirst[i] === arrSecond[j]) {
+                bol = true;
+            }
+        }
+        if (bol === true) {
+            let bol2 = true;
+            for (let j = 0; j < result.length; j++) {
+                if (arrFirst[i] === result[j]) {
+                    bol2 = false;
+                }
+                // console.log(j);
+            }
+            if (bol2 === true) {
+                result.push(arrFirst[i]);
+            }
+        }
+    }
+    return result.length;
+}
+
+const countUniqChars = (text) => {
+    if (text.length === 0) {
+        return 0;
+    }
+    let result = _.uniq(text);
+    return result.length;
+}
+
+const bubbleSort = (arr) => {
+    if (arr.length === 0) {
+      return [];
+    }
+    return arr.sort((a, b) => a - b);
+}
+
