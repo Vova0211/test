@@ -486,10 +486,147 @@ const getDistance = ([x1, y1], [x2, y2]) => {
 }
 
 const getTheNearestLocation = (locations, point) => {
-    const [one, [x1, y1]] = [0, [1, 2]];
-    const [x2, y2] = [0, 1];
-    return getDistance([x1, y1], [x2, y2]);
+    if (locations.length < 1) {
+        return null;
+    }
+    const [x2, y2] = point;
+    let range = [];
+    for (let i = 0; i < locations.length; i++) {
+        const [one, [x1, y1]] = locations[i];
+        range.push(getDistance([x1, y1], [x2, y2]));
+    }
+    let minAmount = range[0]
+    let min = 0;
+    for (let i = 0; i < range.length; i++) {
+        if (range[i] < minAmount) {
+            minAmount = range[i];
+            min = i;
+        }
+    }
+    return locations[min];
 }
 
-console.log(getTheNearestLocation(['Park', [10, 5]]));
+const getMax = (arr) => {
+    if (arr.length === 0) {
+      return null;
+    }
+    let [max, ...rest] = arr;
+    for (const value of rest) {
+        if (value > max) {
+            max = value;
+        }
+    }
+    return max;
+}
+
+const flatten = (arr) => {
+    if (arr.length === 0) {
+        return [];
+    }
+    let result = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (typeof arr[i] === 'object') {
+            result = [...result, ...arr[i]];
+        } else {
+            result.push(arr[i]);
+        }
+    }
+    return result;
+}
+
+const getLastWordLength = (text) => {
+    if (text.length < 1) {
+        return 0;
+    }
+    text = text.trim();
+    const separator = ' ';
+    const words = text.split(separator);
+    const arrWords = [];
+    for (const word of words) {
+        arrWords.push(word);
+    }
+    return arrWords[arrWords.length - 1].length;
+}
+
+const hammingWeight = (number) => {
+    let binary = (number).toString(2);
+    let result = 0;
+    for (let i = 0; i < binary.length; i++) {
+        if (binary[i] === '1') {
+            result += 1;
+        }
+    }
+    return result;
+}
+
+const isContinuousSequence = (arr) => {
+    if (arr.length < 2) {
+        return false;
+    }
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] !== (arr[i-1] + 1)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+const compareVersion = (ver1, ver2) => {
+    const [a1, b1] = ver1.split('.');
+    const [a2, b2] = ver2.split('.');
+  
+    const major = Math.sign(a1 - a2);
+    const minor = Math.sign(b1 - b2);
+  
+    return major === 0 ? minor : major;
+}
+  
+const chunk = (arr, amount) => {
+    if (arr.length === 0) {
+        return [];
+    } else if (arr.length <= amount) {
+        return [arr]
+    }
+    let res1 = [];
+    let res2 = [];
+    let res3 = [];
+    for (let i = 0; i < amount; i++) {
+        res1.push(arr[i]);
+    }
+}                                                   // need update
+
+const rotateLeft = (matrix) => {
+    let result = [];
+    for (let i = matrix[0].length-1; i >= 0; i--) {
+        let string = [];
+        for (let j = 0; j < matrix.length; j++) {
+            string.push(matrix[j][i]);
+        }
+        result = [...result, string];
+    }
+    return result;
+}
+
+const rotateRight = (matrix) => {
+    let result = [];
+    for (let i = 0; i < matrix[0].length; i++) {
+        let string = [];
+        for (let j = matrix.length - 1; j >= 0; j--) {
+            string.push(matrix[j][i]);
+        }
+        result = [...result, string];
+    }
+    return result;
+}
+
+const getMirrorMatrix = (matrix) => {
+    let result = []
+    for (let i = 0; i < matrix.length; i++) {
+        let string = matrix[i].slice(0, matrix[i].length / 2);
+        string.push(matrix[i].slice(0, matrix[i].length / 2).reverse());
+        string = string.flat();
+        result = [...result, string];
+    }
+    return result;
+}
 
