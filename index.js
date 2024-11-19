@@ -1,4 +1,3 @@
-import _ from './lodash.js';
 const reverseText = (s) => s.split('').reverse().join('');
 
 const printQuestion = (word = '1') => {
@@ -438,43 +437,59 @@ const makeCensored = (text, arrFind) => {
     return arrWords.join(separator);
 }
 
-const getSameCount = (arrFirst, arrSecond) => {
+
+const openingSymbols = ['(', '[', '{', '<'];
+const closingSymbols = [')', ']', '}', '>'];
+const isBracketStructureBalanced = (text) => {
+    const stack = [];
+  
+    for (const symbol of text) {
+      if (openingSymbols.includes(symbol)) {
+        stack.push(symbol);
+      } else {
+        const closingIndex = closingSymbols.indexOf(symbol);
+        if (closingIndex !== -1) {
+          const lastSymbol = stack[stack.length - 1];
+          const openingIndex = openingSymbols.indexOf(lastSymbol);
+          if (openingIndex === closingIndex) {
+            stack.pop();
+          } else {
+            return false;
+          }
+        }
+      }
+    }
+    return stack.length === 0;
+}
+
+const getIntersectionOfSortedArrays = (arr1, arr2) => {
+    const newSet = new Set(arr1);
+    const arr = Array.from(newSet);
     let result = [];
-    for (let i = 0; i < arrFirst.length; i++) {
-        let bol = false;
-        for (let j = 0; j < arrSecond.length; j++) {
-            if (arrFirst[i] === arrSecond[j]) {
-                bol = true;
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr2.length; j++) {
+            if(arr[i] === arr2[j]) {
+                result.push(arr[i]);
+                break
             }
         }
-        if (bol === true) {
-            let bol2 = true;
-            for (let j = 0; j < result.length; j++) {
-                if (arrFirst[i] === result[j]) {
-                    bol2 = false;
-                }
-                // console.log(j);
-            }
-            if (bol2 === true) {
-                result.push(arrFirst[i]);
-            }
-        }
+        
     }
-    return result.length;
+    return result;
 }
 
-const countUniqChars = (text) => {
-    if (text.length === 0) {
-        return 0;
-    }
-    let result = _.uniq(text);
-    return result.length;
+const getDistance = ([x1, y1], [x2, y2]) => {
+    const xs = x2 - x1;
+    const ys = y2 - y1;
+  
+    return Math.sqrt(xs ** 2 + ys ** 2);
 }
 
-const bubbleSort = (arr) => {
-    if (arr.length === 0) {
-      return [];
-    }
-    return arr.sort((a, b) => a - b);
+const getTheNearestLocation = (locations, point) => {
+    const [one, [x1, y1]] = [0, [1, 2]];
+    const [x2, y2] = [0, 1];
+    return getDistance([x1, y1], [x2, y2]);
 }
+
+console.log(getTheNearestLocation(['Park', [10, 5]]));
 
