@@ -595,16 +595,16 @@ const chunk = (arr, amount) => {
     }
 }                                                   // need update
 
-const rotateLeft = (matrix) => {
-    let result = [];
-    for (let i = matrix[0].length-1; i >= 0; i--) {
+const rotateLeft = (matrix2) => {
+    let matrix2L = [];
+    for (let i = matrix2[0].length-1; i >= 0; i--) {
         let string = [];
-        for (let j = 0; j < matrix.length; j++) {
-            string.push(matrix[j][i]);
+        for (let j = 0; j < matrix2.length; j++) {
+            string.push(matrix2[j][i]);
         }
-        result = [...result, string];
+        matrix2L = [...matrix2L, string];
     }
-    return result;
+    return matrix2L;
 }
 
 const rotateRight = (matrix) => {
@@ -630,3 +630,46 @@ const getMirrorMatrix = (matrix) => {
     return result;
 }
 
+const multiply = (matrix1, matrix2) => {
+    let matrix2L = [];
+    for (let i = matrix2[0].length-1; i >= 0; i--) {
+        let string = [];
+        for (let j = 0; j < matrix2.length; j++) {
+            string.push(matrix2[j][i]);
+        }
+        matrix2L = [...matrix2L, string];
+    }
+    let string = [];
+    for (let i = 0; i < matrix1[0].length; i++) {
+        let res = 0;
+        for (let j = 0; j < matrix1.length; j++) {
+            if (i === 1) {
+                res += matrix1[i][j] * matrix2[j][i];
+            }
+            res += matrix1[i][j] * matrix2[j][i];
+        }
+        string.push(res);
+    }
+    console.log(string);
+} //                    need update
+/*const matrixA = [
+    [1, 2, 1],
+    [0, 1, 0],
+    [2, 3, 4],
+  ];
+  const matrixB = [
+    [2, 5],
+    [6, 7],
+    [1, 8],
+  ];
+multiply(matrixA, matrixB);*/
+
+const sumIntervals = (arr) => {
+    let result = 0;
+    for (let i = 0; i < arr.length; i++) {
+        result += (arr[i][1] - arr[i][0]);
+    }
+    return result;
+}
+
+console.log(sumIntervals([[-100, 0]]))
