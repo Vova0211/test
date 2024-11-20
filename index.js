@@ -437,3 +437,295 @@ const makeCensored = (text, arrFind) => {
     return arrWords.join(separator);
 }
 
+const openingSymbols = ['(', '[', '{', '<'];
+const closingSymbols = [')', ']', '}', '>'];
+const isBracketStructureBalanced = (text) => {
+    const stack = [];
+  
+    for (const symbol of text) {
+      if (openingSymbols.includes(symbol)) {
+        stack.push(symbol);
+      } else {
+        const closingIndex = closingSymbols.indexOf(symbol);
+        if (closingIndex !== -1) {
+          const lastSymbol = stack[stack.length - 1];
+          const openingIndex = openingSymbols.indexOf(lastSymbol);
+          if (openingIndex === closingIndex) {
+            stack.pop();
+          } else {
+            return false;
+          }
+        }
+      }
+    }
+    return stack.length === 0;
+}
+
+const getIntersectionOfSortedArrays = (arr1, arr2) => {
+    const newSet = new Set(arr1);
+    const arr = Array.from(newSet);
+    let result = [];
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr2.length; j++) {
+            if(arr[i] === arr2[j]) {
+                result.push(arr[i]);
+                break
+            }
+        }
+        
+    }
+    return result;
+}
+
+const getDistance = ([x1, y1], [x2, y2]) => {
+    const xs = x2 - x1;
+    const ys = y2 - y1;
+  
+    return Math.sqrt(xs ** 2 + ys ** 2);
+}
+
+const getTheNearestLocation = (locations, point) => {
+    if (locations.length < 1) {
+        return null;
+    }
+    const [x2, y2] = point;
+    let range = [];
+    for (let i = 0; i < locations.length; i++) {
+        const [one, [x1, y1]] = locations[i];
+        range.push(getDistance([x1, y1], [x2, y2]));
+    }
+    let minAmount = range[0]
+    let min = 0;
+    for (let i = 0; i < range.length; i++) {
+        if (range[i] < minAmount) {
+            minAmount = range[i];
+            min = i;
+        }
+    }
+    return locations[min];
+}
+
+const getMax = (arr) => {
+    if (arr.length === 0) {
+      return null;
+    }
+    let [max, ...rest] = arr;
+    for (const value of rest) {
+        if (value > max) {
+            max = value;
+        }
+    }
+    return max;
+}
+
+const flatten = (arr) => {
+    if (arr.length === 0) {
+        return [];
+    }
+    let result = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (typeof arr[i] === 'object') {
+            result = [...result, ...arr[i]];
+        } else {
+            result.push(arr[i]);
+        }
+    }
+    return result;
+}
+
+const getLastWordLength = (text) => {
+    if (text.length < 1) {
+        return 0;
+    }
+    text = text.trim();
+    const separator = ' ';
+    const words = text.split(separator);
+    const arrWords = [];
+    for (const word of words) {
+        arrWords.push(word);
+    }
+    return arrWords[arrWords.length - 1].length;
+}
+
+const hammingWeight = (number) => {
+    let binary = (number).toString(2);
+    let result = 0;
+    for (let i = 0; i < binary.length; i++) {
+        if (binary[i] === '1') {
+            result += 1;
+        }
+    }
+    return result;
+}
+
+const isContinuousSequence = (arr) => {
+    if (arr.length < 2) {
+        return false;
+    }
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] !== (arr[i-1] + 1)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+const compareVersion = (ver1, ver2) => {
+    const [a1, b1] = ver1.split('.');
+    const [a2, b2] = ver2.split('.');
+  
+    const major = Math.sign(a1 - a2);
+    const minor = Math.sign(b1 - b2);
+  
+    return major === 0 ? minor : major;
+}
+  
+const chunk = (arr, amount) => {
+    if (arr.length === 0) {
+        return [];
+    } else if (arr.length <= amount) {
+        return [arr]
+    }
+    let result = [];
+    let arr2 = arr;
+    for (let i = 0; i < arr.length; i++) {
+        let chank = []
+        for (let j = 0; j < amount; j++) {
+            chank.push(arr2[j]);
+        }
+        if (chank[1] === undefined) {
+            break;
+        }
+        result.push(chank);
+        arr2 = arr2.slice(amount);
+        if (arr2.length === 0) {
+            continue;
+        } else if (arr2.length < amount) {
+            result.push(arr2);
+        }
+    }
+    return result;
+}
+
+const chunk2 = (arr, size) => {
+    const nArr = [];
+    for (let i = 0; i < arr.length; i += size) {
+      nArr.push(arr.slice(i, i + size));
+    }
+    return nArr;
+};
+
+const rotateLeft = (matrix2) => {
+    let matrix2L = [];
+    for (let i = (matrix2[0].length - 1); i >= 0; i--) {
+        let string = [];
+        for (let j = 0; j < matrix2.length; j++) {
+            string.push(matrix2[j][i]);
+        }
+        matrix2L = [...matrix2L, string];
+    }
+    return matrix2L;
+}
+
+const rotateRight = (matrix) => {
+    let result = [];
+    for (let i = 0; i < matrix[0].length; i++) {
+        let string = [];
+        for (let j = matrix.length - 1; j >= 0; j--) {
+            string.push(matrix[j][i]);
+        }
+        result = [...result, string];
+    }
+    return result;
+}
+
+const getMirrorMatrix = (matrix) => {
+    let result = []
+    for (let i = 0; i < matrix.length; i++) {
+        let string = matrix[i].slice(0, matrix[i].length / 2);
+        string.push(matrix[i].slice(0, matrix[i].length / 2).reverse());
+        string = string.flat();
+        result = [...result, string];
+    }
+    return result;
+}
+
+const sumIntervals = (arr) => {
+    const values = [];
+    for (const [start, end] of arr) {
+      for (let i = start; i < end; i += 1) {
+        if (!values.includes(i)) {
+          values.push(i);
+        }
+      }
+    }
+    return values.length;
+  };
+
+const multiply = (a, b) => {
+    let aNumRows = a.length, aNumCols = a[0].length,
+        bNumRows = b.length, bNumCols = b[0].length,
+        m = new Array(aNumRows);  // initialize array of rows
+    for (var r = 0; r < aNumRows; ++r) {
+      m[r] = new Array(bNumCols); // initialize the current row
+      for (var c = 0; c < bNumCols; ++c) {
+        m[r][c] = 0;             // initialize the current cell
+        for (var i = 0; i < aNumCols; ++i) {
+          m[r][c] += a[r][i] * b[i][c];
+        }
+      }
+    }
+    return m;
+}
+
+const summaryRanges = (arr) => {
+    if (arr.length < 2) {
+      return [];
+    }
+    let tempArr = [];
+    const result = [];
+    for (let i = 0; i < arr.length; i += 1) {
+      const previous = arr[i - 1];
+      const current = arr[i];
+      const next = arr[i + 1];
+      if (next === current + 1) {
+        tempArr.push(current);
+      } else if ((previous === current - 1) && (next !== current + 1)) {
+        tempArr.push(current);
+        const range = `${tempArr[0]}->${tempArr[tempArr.length - 1]}`;
+        result.push(range);
+        tempArr = [];
+      }
+    }
+    return result;
+}
+
+const buildSnailPath = (arr) => {
+    let result = [];
+    while(true) {
+        if (arr.length === 0) {
+            break;
+        }
+        for (let i = 0; i < arr[0].length; i++) {
+            result.push(arr[0][i]);
+        }
+        arr = arr.slice(1);
+        if (arr.length === 0) {
+            continue;
+        }
+        arr = rotateLeft(arr);
+    }
+    return result;
+}
+
+const rotate = (arr) => {
+    arr = rotateLeft(arr);
+    return arr;
+}
+
+let snail = [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12],
+];
+console.log(buildSnailPath(snail));
