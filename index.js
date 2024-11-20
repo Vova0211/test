@@ -717,15 +717,3 @@ const buildSnailPath = (arr) => {
     }
     return result;
 }
-
-const rotate = (arr) => {
-    arr = rotateLeft(arr);
-    return arr;
-}
-
-let snail = [
-    [1, 2, 3, 4],
-    [5, 6, 7, 8],
-    [9, 10, 11, 12],
-];
-console.log(buildSnailPath(snail));
