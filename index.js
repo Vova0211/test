@@ -662,16 +662,16 @@ const sumIntervals = (arr) => {
     return values.length;
   };
 
-const multiply = (a, b) => {
-    let aNumRows = a.length, aNumCols = a[0].length,
-        bNumRows = b.length, bNumCols = b[0].length,
-        m = new Array(aNumRows);  // initialize array of rows
-    for (var r = 0; r < aNumRows; ++r) {
-      m[r] = new Array(bNumCols); // initialize the current row
-      for (var c = 0; c < bNumCols; ++c) {
+const multiply = (matrix1, matrix2) => {
+    let matr1Rows = matrix1.length, matr1Cols = matrix1[0].length,
+        matr2Rows = matrix2.length, matr2Cols = matrix2[0].length,
+        m = new Array(matr1Rows);  // initialize array of rows
+    for (var r = 0; r < matr1Rows; ++r) {
+      m[r] = new Array(matr2Cols); // initialize the current row
+      for (var c = 0; c < matr2Cols; ++c) {
         m[r][c] = 0;             // initialize the current cell
-        for (var i = 0; i < aNumCols; ++i) {
-          m[r][c] += a[r][i] * b[i][c];
+        for (var i = 0; i < matr1Cols; ++i) {
+          m[r][c] += matrix1[r][i] * matrix2[i][c];
         }
       }
     }
@@ -716,4 +716,36 @@ const buildSnailPath = (arr) => {
         arr = rotateLeft(arr);
     }
     return result;
+}
+
+const arrayTransformation = (array) => {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] === '/' && array[i - 1] === 0) {
+       return null;
+      } else if (typeof(array[i]) === 'string') {
+       const exprString = `${array[i - 2]} 
+       ${array[i]} ${array[i - 1]}`;
+       const exprResult = eval(exprString);
+       const start = array.slice(0, i - 2);
+       const end = array.slice(i + 1);
+       const newArray = [...start, exprResult, ...end];
+         
+       return newArray;
+     }
+   }
+}
+ 
+const calcInPolishNotation = (arr) => {
+   let newArray = arr;
+   
+   while (newArray.length !== 1) {
+     newArray = arrayTransformation(newArray);
+     
+     if (newArray === null) {
+       return newArray;
+     }
+   }
+   
+   let result = newArray[0];
+   return result;
 }
