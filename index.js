@@ -749,3 +749,115 @@ const calcInPolishNotation = (arr) => {
    let result = newArray[0];
    return result;
 }
+
+const getLongestLength = (text) => {
+    if (text.length < 1) {
+        return 0;
+    }
+    let result = 0;
+    for (let i = 0; i < text.length; i++) {
+        let result1 = [];
+        for (let j = i; j < text.length; j++) {
+            if (result1.indexOf(text[j + 1]) === -1 && text[j + 1] !== text[j]) {
+                result1.push(text[j]);
+            } else {
+                result1.push(text[j]);
+                break;
+            }
+        }
+        if (result1.length > result) {
+            result = result1.length;
+        }
+    }
+    return result;
+}
+
+const nextStrOfTriang = (arr) => {
+    let strOfTriang = [1];
+    for (let i = 1; i < arr.length; i++) {
+        strOfTriang.push(arr[i - 1] + arr[i]);
+    }
+    strOfTriang.push(1);
+    return strOfTriang;
+}
+const generate = (num) => {
+    let pascalTriang = [[1], [1, 1]];
+    for (let i = 1; i < num; i++) {
+        pascalTriang.push(nextStrOfTriang(pascalTriang[i]));
+    }
+    return pascalTriang[num];
+}
+
+const calcShipsCount = (batleField, shipDeck = 0) => {
+    if (batleField.length === 0) return 0;
+    const ships = [];
+    let shipDeckCount = 1;
+    const rows = batleField.length;
+    const [column] = batleField;
+    const columns = column.length;
+    //  считаем горизонтальные палубы shipDeckCount и записываем в ships
+    //  корабли от 2-х палуб по строкам:
+    for (let j = 0; j < rows; j += 1) {
+      for (let i = 0; i < columns - 1; i += 1) {
+        if (batleField[j][i] === 1 && batleField[j][i + 1] === 1) {
+          while (batleField[j][i] === 1 && batleField[j][i + 1] === 1) {
+            shipDeckCount += 1;
+            i += 1;
+          }
+          ships.push(shipDeckCount);
+          shipDeckCount = 1;
+        }
+      }
+    }
+    //  считаем вертикальные палубы shipDeckCount и записываем
+    //  в ships корабли от 2-х палуб по столбцам:
+    for (let j = 0; j < columns; j += 1) {
+      for (let i = 0; i < rows - 1; i += 1) {
+        if (batleField[i][j] === 1 && batleField[i + 1][j] === 1) {
+          while (batleField[i][j] === 1 && batleField[i + 1][j] === 1) {
+            shipDeckCount += 1;
+            j += 1;
+          }
+          ships.push(shipDeckCount);
+          shipDeckCount = 1;
+        }
+      }
+    }
+    //  ищем и записываем в ships однопалубные корабли по всему полю:
+    const newArray = [0, ...batleField, 0];
+    // новый массив, чтобы не выходить за границы массива batleField
+    for (let j = 1; j < rows + 1; j += 1) {
+      for (let i = 0; i < columns; i += 1) {
+        if (newArray[j][i] === 1 && !newArray[j][i + 1] && !newArray[j][i - 1]
+        && !newArray[j + 1][i] && !newArray[j - 1][i]) {
+          ships.push(1);
+        }
+      }
+    }
+    //  по умолчанию необязательный параметр shipDeck = 0, выводится количество всех кораблей
+    if (shipDeck === 0) {
+      return ships.length;
+    }
+    // при указании количества палуб shipDeck, выводится количество кораблей с такими палубами
+    return ships.filter((x) => x === shipDeck).length;
+};
+  
+const isValidField = (batleField) => {
+    if (batleField.length === 0) return true;
+    const newArray = [0, ...batleField, 0];
+    const rows = batleField.length;
+    const [column] = batleField;
+    const columns = column.length;
+    for (let i = 1; i < rows + 1; i += 1) {
+      for (let j = 0; j < columns; j += 1) {
+        if (newArray[i][j] === 1 && !newArray[i - 1][j - 1] && !newArray[i + 1][j + 1]
+          && !newArray[i - 1][j + 1] && !newArray[i + 1][j - 1]) {
+          continue;
+        } else if (newArray[i][j] === 1) {
+          return false;
+        }
+      }
+    }
+    return true;
+};
+  
