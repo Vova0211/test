@@ -861,3 +861,29 @@ const isValidField = (batleField) => {
     return true;
 };
   
+
+const phonebook = [
+    { name: 'Alex Bowman', number: '48-2002' },
+    { name: 'Aric Almirola', number: '10-1001' },
+    { name: 'Bubba Wallace', number: '23-1111' },
+  ];
+const solution = (phonebook, name) => {
+    if (phonebook.length === 0) {
+        return 'Phonebook is empty!';
+    }
+    let first = 0;
+    let last = phonebook.length - 1;
+    while (first <= last) {
+        const middle = Math.floor((first + last) / 2);
+        if (phonebook[middle]["name"] === name) {
+            return phonebook[middle]["number"];
+        }
+        if (phonebook[middle]["name"] > name) {
+            last = middle - 1;
+        } else {
+            first = middle + 1;
+        }
+    }
+    return "Name not found!";
+}
+console.log(solution([], 'Alex Bowman'))
