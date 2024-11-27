@@ -861,24 +861,47 @@ const isValidField = (batleField) => {
     return true;
 };
   
+const dictionaryToArrayOfObjects = (dictionary) => {
+    return Object.keys(dictionary).reduce((acc, key) => {
+        acc.push({ key: key, value: dictionary[key] });
+        return acc;
+    }, []);
+};
+
+const phonebook1 = [{"name":"Alex Bowman","number":"48-2002"},{"name":"Aric Almirola","number":"10-1001"},{"name":"Bubba Wallace","number":"23-1111"},{"name":"Chase Elliott","number":"9-9900"},{"name":"Denny Hamlin","number":"11-0022"},{"name":"John Logano","number":"22-2299"},{"name":"Kevin Harvick","number":"4-1154"},{"name":"Kyle Busch","number":"18-3002"},{"name":"Kyle Larson","number":"5-2234"},{"name":"Matt Dibenedetto","number":"21-1102"}];
 
 const phonebook = [
-    { name: 'Alex Bowman', number: '48-2002' },
-    { name: 'Aric Almirola', number: '10-1001' },
-    { name: 'Bubba Wallace', number: '23-1111' },
+    ['Denny Hamlin', '11-0022'],
+    ['Chase Elliott', '9-9900'],
+    ['Alex Bowman', '48-2002'],
+    ['Matt Dibenedetto', '21-1102'],
+    ['Kyle Larson', '5-2234'],
   ];
+
+
 const solution = (phonebook, name) => {
     if (phonebook.length === 0) {
         return 'Phonebook is empty!';
+    }
+    if (phonebook[0][0] === undefined) {
+        for (let i = 0; i < phonebook.length; i) {
+            if (phonebook[0][0] !== undefined) {
+                break;
+            }
+            let str = [phonebook[i]["name"]];
+            str.push(phonebook[i]["number"]);
+            phonebook.push(str);
+            phonebook = phonebook.slice(1);
+        }
     }
     let first = 0;
     let last = phonebook.length - 1;
     while (first <= last) {
         const middle = Math.floor((first + last) / 2);
-        if (phonebook[middle]["name"] === name) {
-            return phonebook[middle]["number"];
+        if (phonebook[middle][0] === name) {
+            return phonebook[middle][1];
         }
-        if (phonebook[middle]["name"] > name) {
+        if (phonebook[middle][0] > name) {
             last = middle - 1;
         } else {
             first = middle + 1;
@@ -886,4 +909,3 @@ const solution = (phonebook, name) => {
     }
     return "Name not found!";
 }
-console.log(solution([], 'Alex Bowman'))
