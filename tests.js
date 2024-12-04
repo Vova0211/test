@@ -1,3 +1,4 @@
+
 const apples = (stud, appl) => {
   let result = []
   result.push(Math.floor(appl / stud));
