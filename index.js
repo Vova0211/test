@@ -879,7 +879,7 @@ const phonebook = [
   ];
 
 
-const solution = (phonebook, name) => {
+const solution = (phonebook, name) => { // binary find
     if (phonebook.length === 0) {
         return 'Phonebook is empty!';
     }
@@ -909,3 +909,10 @@ const solution = (phonebook, name) => {
     }
     return "Name not found!";
 }
+
+const NOD = (x, y) => {         // solution
+	if (y > x) return NOD(y, x);
+	if (!y) return x;
+	return NOD(y, x % y);
+}
+console.log(!0);
