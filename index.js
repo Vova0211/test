@@ -870,15 +870,6 @@ const dictionaryToArrayOfObjects = (dictionary) => {
 
 const phonebook1 = [{"name":"Alex Bowman","number":"48-2002"},{"name":"Aric Almirola","number":"10-1001"},{"name":"Bubba Wallace","number":"23-1111"},{"name":"Chase Elliott","number":"9-9900"},{"name":"Denny Hamlin","number":"11-0022"},{"name":"John Logano","number":"22-2299"},{"name":"Kevin Harvick","number":"4-1154"},{"name":"Kyle Busch","number":"18-3002"},{"name":"Kyle Larson","number":"5-2234"},{"name":"Matt Dibenedetto","number":"21-1102"}];
 
-const phonebook = [
-    ['Denny Hamlin', '11-0022'],
-    ['Chase Elliott', '9-9900'],
-    ['Alex Bowman', '48-2002'],
-    ['Matt Dibenedetto', '21-1102'],
-    ['Kyle Larson', '5-2234'],
-  ];
-
-
 const solution = (phonebook, name) => { // binary find
     if (phonebook.length === 0) {
         return 'Phonebook is empty!';
@@ -915,4 +906,4 @@ const NOD = (x, y) => {         // solution
 	if (!y) return x;
 	return NOD(y, x % y);
 }
-console.log(!0);
+console.log(performance.now(solution([], "l")));
