@@ -901,9 +901,9 @@ const solution = (phonebook, name) => { // binary find
     return "Name not found!";
 }
 
+
 const NOD = (x, y) => {         // solution
 	if (y > x) return NOD(y, x);
 	if (!y) return x;
 	return NOD(y, x % y);
 }
-console.log(performance.now(solution([], "l")));
