@@ -8,13 +8,15 @@
   },
   "author": "ded",
   "license": "ISC",
-  "type": "module",
+  
   "devDependencies": {
     "@eslint/create-config": "^1.0.0",
     "eslint": "^8.57.0",
     "jest": "^29.7.0"
   },
   "dependencies": {
+    "gulp": "^5.0.0",
+    "gulp-cli": "^3.0.0",
     "jstransformer-markdown-it": "^3.0.0",
     "pug": "^3.0.3",
     "pug-cli": "^1.0.0-alpha6"
