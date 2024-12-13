@@ -107,10 +107,6 @@ const number_4 = (text) => {
   console.log(reverseEvenText2(text)); //  console.log(reverseEvenText(text))
   console.log(text.length);
 }
-
-number_4('Abrakadabra');
-number_4('qwertyuiop');
-
 const reverseOffer = (text) => text.split(' ').reverse().join(' ');
 
 const findF = (text) => {
@@ -158,3 +154,35 @@ const delH = (text) => {
   return text.split(del).join('');
 }
 
+const getSum = (num1, num2) => {
+  return num1 + num2;
+}
+const castBoolean = (value) => {
+  return Boolean(value);
+}
+const capitalize = (str, num) => {
+  if (num > str.length || num < 0) {
+    return str;
+  }
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    if (i === num) {
+      result += str[num].toUpperCase();
+    } else {
+      result += str[i];
+    }
+  }
+  return result;
+}
+const countCapitalLetters = (str) => {
+  str = str.replaceAll(' ', '');
+  let result = 0;
+  for (let i = 0; i < str.length; i++) {
+    if(str[i] === str[i].toUpperCase()) {
+      result++;
+    }
+  }
+  return result
+}
+
+export {getSum, castBoolean, capitalize, countCapitalLetters};
