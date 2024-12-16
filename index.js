@@ -901,9 +901,20 @@ const solution = (phonebook, name) => { // binary find
     return "Name not found!";
 }
 
-
 const NOD = (x, y) => {         // solution
 	if (y > x) return NOD(y, x);
 	if (!y) return x;
 	return NOD(y, x % y);
 }
+
+/*
+const arr = [[1, 9, 8], 2, 3, [4, 7], 5, 6];;
+console.log(arr.find((value) => value == 1)); //    1  */
+
+/*
+const inventory = [
+    { name: "apples", quantity: 2 },
+    { name: "bananas", quantity: 0 },
+    { name: "cherries", quantity: 5 },
+  ];
+console.log(inventory.find((value) => value.name == "apples")); //  { name: 'apples', quantity: 2 }     */
