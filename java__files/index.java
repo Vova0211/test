@@ -4,7 +4,7 @@ public class index {
     for(int i = 1000; i > 0; i -= 7) {
       String result = String.valueOf(i) + " - 7 = ";
       result += String.valueOf(i-7);
-      // System.out.println(result);
+      System.out.println(result);
     }
     System.out.println(App.encrypt("move"));
   }
