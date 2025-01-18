@@ -4,7 +4,7 @@
   "description": "test file",
   "main": "index.js",
   "scripts": {
-    "test": "mocha *.test.js"
+    "test": "mocha js__files/js_test/*.test.js"
   },
   "author": "ded",
   "license": "ISC",
