@@ -870,7 +870,7 @@ const dictionaryToArrayOfObjects = (dictionary) => {
 
 const phonebook1 = [{"name":"Alex Bowman","number":"48-2002"},{"name":"Aric Almirola","number":"10-1001"},{"name":"Bubba Wallace","number":"23-1111"},{"name":"Chase Elliott","number":"9-9900"},{"name":"Denny Hamlin","number":"11-0022"},{"name":"John Logano","number":"22-2299"},{"name":"Kevin Harvick","number":"4-1154"},{"name":"Kyle Busch","number":"18-3002"},{"name":"Kyle Larson","number":"5-2234"},{"name":"Matt Dibenedetto","number":"21-1102"}];
 
-const solution = (phonebook, name) => { // binary find
+const binary_find = (phonebook, name) => { // binary find solution, find number of name
     if (phonebook.length === 0) {
         return 'Phonebook is empty!';
     }
@@ -906,7 +906,7 @@ const NOD = (x, y) => {         // solution
 	if (!y) return x;
 	return NOD(y, x % y);
 }
-// module.exports = {  };
+module.exports = { binary_find };
 /*
 const arr = [[1, 9, 8], 2, 3, [4, 7], 5, 6];;
 console.log(arr.find((value) => value == 1)); //    1  */

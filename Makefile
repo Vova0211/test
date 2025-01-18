@@ -1,4 +1,4 @@
 start:
-	node index.js
+	node js__files/index.js
 test:
-	node index.test.js
+	npm test
