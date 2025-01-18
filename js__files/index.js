@@ -906,7 +906,7 @@ const NOD = (x, y) => {         // solution
 	if (!y) return x;
 	return NOD(y, x % y);
 }
-
+// module.exports = {  };
 /*
 const arr = [[1, 9, 8], 2, 3, [4, 7], 5, 6];;
 console.log(arr.find((value) => value == 1)); //    1  */

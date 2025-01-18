@@ -1,3 +1,4 @@
+package java__files;
 public class App {
   public static boolean Prime(int number) {
     if (number < 2) {
