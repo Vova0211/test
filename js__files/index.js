@@ -918,3 +918,9 @@ const inventory = [
     { name: "cherries", quantity: 5 },
   ];
 console.log(inventory.find((value) => value.name == "apples")); //  { name: 'apples', quantity: 2 }     */
+const data = {
+    name: 1,
+    user: 2
+}
+// const keys
+console.log(Object.entries(data)[0].includes('name'))
